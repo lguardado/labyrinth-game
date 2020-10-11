@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import React from "react";
+
 import Block from "../block/block";
 import styles from "./visualLabyrinth.module.scss";
 import { Cell } from "../../shared/models/cell";

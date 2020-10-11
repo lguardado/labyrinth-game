@@ -1,5 +1,6 @@
 // eslint-disable-next-line
 import React from "react";
+
 import styles from "./block.module.scss";
 
 interface Props {
