@@ -121,7 +121,7 @@ class Labyrinth extends React.Component {
     this.setState((prevState: State) => ({
       ...initialState,
       movesLeft: moves,
-      currentLevel: prevState.currentLevel++,
+      currentLevel: prevState.currentLevel+1,
     }));
     this.createLabyrinthGrid();
     // it positions the scroll at the initial player position.
