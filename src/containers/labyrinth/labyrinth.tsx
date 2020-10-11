@@ -168,8 +168,7 @@ class Labyrinth extends React.Component {
     return (
       <>
         <div className={styles.Level}>
-          Level
-          {this.state.currentLevel}
+          {'Level: '} {this.state.currentLevel}
         </div>
         <div className={styles.Container}>
           <VisualLabyrinth matrix={this.state.grid} />
