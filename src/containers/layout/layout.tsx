@@ -1,11 +1,10 @@
-import React, { ReactNode } from 'react';
+// eslint-disable-next-line
+import React, { ReactNode } from "react";
 
 interface Props {
-    children: ReactNode;
+  children: ReactNode;
 }
 
-const Layout: React.FC<Props> = ({ children }) => {
-    return <div>{children}</div>
-}
+const Layout: React.FC<Props> = ({ children }) => <div>{children}</div>;
 
 export default Layout;

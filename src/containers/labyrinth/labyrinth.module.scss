@@ -1,7 +1,7 @@
 .Container {
     width: auto;
     height: auto;
-    margin: 50px;
+    padding-top: 20px;
 }
 
 .Row {
@@ -9,9 +9,8 @@
     justify-content: center;
 }
 
-.NewGameButtons {
-    display: flex;
-    flex-flow: column;
-    left: 20px;
-    position: absolute;
+.Level {
+    text-align: center;
+    font-size: 19px;
+    padding: 10px;
 }

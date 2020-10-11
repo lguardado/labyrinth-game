@@ -1,8 +1,10 @@
 .Button {
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 20px;
     background-color: transparent;
-    border: none;  
+    border: 1px solid lightgray;
+    margin: 2px;
+    background-color: lightsteelblue;
 }
 
 .ButtonWrapper {

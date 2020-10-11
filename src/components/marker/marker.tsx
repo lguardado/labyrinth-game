@@ -1,19 +1,42 @@
-import React from 'react';
-import styles from './marker.module.scss';
+// eslint-disable-next-line
+import React from "react";
+
+import styles from "./marker.module.scss";
+import constants from "../../shared/constants";
+
 interface Props {
-    movesLeft: number;
-    success: boolean;
-    showResult: boolean;
+  movesLeft: number;
+  success: boolean;
+  showResult: boolean;
 }
 
 const Marker: React.FC<Props> = ({ movesLeft, success, showResult }) => {
-    const successMessage = success ? <div>You win!</div> :
-        <div>You loose!</div>
+  const warningLimit = 10;
+  const dangerLimit = 5;
 
-    return <div className={styles.MarkerInfo}>
-        {showResult && successMessage}
-        <div>MOVES LEFT: {movesLeft}</div>
+  const successMessage = success ? (
+    <div className={styles.Success}>You win!</div>
+  ) : (
+    <div className={styles.Warning}>You loose!</div>
+  );
+
+  return (
+    <div
+      className={[
+        styles.MarkerInfo,
+        movesLeft < warningLimit && movesLeft > dangerLimit
+          ? styles.Warning
+          : movesLeft <= dangerLimit
+          ? styles.Danger
+          : "",
+      ].join(" ")}
+    >
+      {showResult && successMessage}
+      <div data-testid="moves-left">
+        {constants.MOVES_LEFT}:{movesLeft}
+      </div>
     </div>
+  );
 };
 
 export default Marker;

@@ -1,34 +1,40 @@
-import React from 'react';
-import Button from '../button/button';
-import { shallow, ShallowWrapper } from 'enzyme'
+// eslint-disable-next-line
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import Button from "../button/button";
+import userEvent from "@testing-library/user-event";
 
+const mockText = "foo";
 
-describe('<Button />', () => {
-    let wrapper: ShallowWrapper<any, Readonly<{}>, React.Component<{}, {}, any>>;
-    let mockFunction: jest.Mock<any, any>;
-    beforeEach(() => {
-        const buttonText = 'test text';
-        mockFunction = jest.fn();
-        wrapper = shallow(<Button text={buttonText} onClick={mockFunction}/>);
-    })
-    it('should render the Button without crashing', () => {
-        expect(wrapper).toBeDefined();
-    });
+test("It should render a <Button /> with the text passed to it", () => {
+  render(<Button text={mockText} />);
+  const button = screen.getByText(mockText);
+  expect(button).toBeInTheDocument();
+  expect(button.innerHTML).toContain(mockText);
+});
 
-    it('should have a button defined', () => {
-        expect(wrapper.find('button').length).toBe(1);
-    });
+test("It should call the passed function when it's clicked", () => {
+  const mockFunction = jest.fn();
+  render(<Button text={mockText} onClick={mockFunction}/>);
+  const button = screen.getByRole('button');
+  userEvent.click(button);
+  expect(mockFunction).toHaveBeenCalledTimes(1);
+});
 
-    it('should show a button with the text passed to it', () => {
-        expect(wrapper.find('button').text()).toBe('test text');
-    });
+test("It should have a the classes passed as prop", () => {
+  const mockClassA = 'mockClassA';
+  const mockClassB = 'mockClassB';
+  render(<Button text={mockText} classes={[mockClassA, mockClassB]}/>);
+  const button = screen.getByRole('button');
+  expect(button).toHaveClass(mockClassA);
+  expect(button).toHaveClass(mockClassB);
+});
 
-    it('should have a button with the prop passed to it', () => {
-        expect(wrapper.find('button').prop('onClick')).toBe(mockFunction);
-    });
-    it('should have a button with the prop passed to it', () => {
-        wrapper.find('button').simulate('click');
-        expect(mockFunction).toHaveBeenCalledTimes(1);
-    });
+test("It should have the base class when no classes are passed", () => {
+  const anotherMockClass = 'AnotherClass';
+  render(<Button text={mockText}/>);
+  const button = screen.getByRole('button');
+  expect(button).toHaveClass('Button');
+  expect(button).not.toHaveClass('anotherMockClass');
 });
 
