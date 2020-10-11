@@ -8,6 +8,7 @@ function App() {
   return (
     <Layout>
       <Labyrinth />
+      <div style={{position: 'absolute', top: '0', right: '0'}}>created by Lucas Guardado</div>
     </Layout>
   );
 }
