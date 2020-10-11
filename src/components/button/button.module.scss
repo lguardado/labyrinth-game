@@ -1,0 +1,13 @@
+.Button {
+    text-transform: capitalize;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;  
+}
+
+.ButtonWrapper {
+    display: contents;
+    svg {
+        padding-right: 0;
+    }
+}

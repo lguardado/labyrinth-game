@@ -1,0 +1,22 @@
+.Block {
+    width: 50px;
+    height: 50px;
+    border: 1px solid darkslategrey;
+}
+.Player {
+    border: 5px solid black;
+    border-radius: 70%;
+    height: 40px;
+}
+
+.Start {
+    background: yellow;
+}
+
+.Finish {
+    background: lightgreen;
+}
+
+.Disabled {
+    background: gray;
+}

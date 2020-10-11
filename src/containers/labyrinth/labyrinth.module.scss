@@ -1,0 +1,17 @@
+.Container {
+    width: auto;
+    height: auto;
+    margin: 50px;
+}
+
+.Row {
+    display: flex;
+    justify-content: center;
+}
+
+.NewGameButtons {
+    display: flex;
+    flex-flow: column;
+    left: 20px;
+    position: absolute;
+}
