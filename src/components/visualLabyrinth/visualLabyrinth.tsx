@@ -12,7 +12,7 @@ const VisualLabyrinth: React.FC<Props> = ({ matrix }) =>
   matrix.map((row: Array<Cell>, i: number) => (
     <div key={i} className={styles.Row}>
       {row.map((col: any, j: number) => (
-        <Block data-testid='block' key={i + j} {...col} />
+        <Block data-testid="block" key={i + j} {...col} />
       ))}
     </div>
   ));

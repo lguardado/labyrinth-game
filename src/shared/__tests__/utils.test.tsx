@@ -1,6 +1,6 @@
 import { Cell } from "../models/cell";
 import * as Utils from "../utils/utils";
-import mockMatrix from '../mocks/mockMatrix';
+import mockMatrix from "../mocks/mockMatrix";
 
 const columns = 2;
 const rows = 5;
@@ -18,13 +18,13 @@ test("Function getMatrix returns the correct data", () => {
 test("it should generate some walls in a grid passed to it", () => {
   Utils.generateWalls(mockMatrix);
   let walls = 0;
-  let paths = 0
+  let paths = 0;
   for (let i = 0; i < mockMatrix.length; i++) {
     for (let j = 0; j < mockMatrix[0].length; j++) {
       if (mockMatrix[i][j].isWall) {
         walls++;
       } else {
-        paths ++;
+        paths++;
       }
     }
   }

@@ -1,7 +1,11 @@
 // eslint-disable-next-line
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 import Block from "../block/block";
+
+beforeEach(() => {
+  cleanup();
+});
 
 test("Has the Disabled class when receives isWall prop as true", () => {
   render(<Block isWall />);
@@ -23,6 +27,6 @@ test("It shows the Player class when receives isPlayerHere prop as true", () => 
 
 test("It doesnt show the Player class when receives isPlayerHere prop as false", () => {
   render(<Block />);
-  let player = screen.queryByTestId("player");
+  const player = screen.queryByTestId("player");
   expect(player).toBeNull();
 });
