@@ -8,13 +8,15 @@ import VisualLabyrinth from "../../components/visualLabyrinth/visualLabyrinth";
 import GameControls from "../../components/gameControls/gameControls";
 import { Cell } from "../../shared/models/cell";
 
-const BASE_ROWS = 5;
-const BASE_COLS = 5;
+const config = {
+  BASE_ROWS: 5,
+  BASE_COLS: 5,
+  ADITIONAL_MOVEMENTS: 5
+}
 
-let rows = BASE_ROWS;
-let columns = BASE_COLS;
-let moves = rows + columns + 5;
-
+let rows = config.BASE_ROWS;
+let columns = config.BASE_COLS;
+let moves = rows + columns + config.ADITIONAL_MOVEMENTS;
 interface State {
   grid: Array<Array<Cell>>;
   x: number;
@@ -40,8 +42,7 @@ const initialState: State = {
 class Labyrinth extends React.Component {
   state: State = initialState;
 
-  componentDidMount(): void {
-    document.addEventListener("keydown", (event) => {
+  handleKey = (event: KeyboardEvent) => {
       const { x, y } = this.state;
       switch (event.code) {
         case "ArrowUp":
@@ -67,7 +68,10 @@ class Labyrinth extends React.Component {
         default:
           break;
       }
-    });
+  }
+
+  componentDidMount(): void {
+    document.addEventListener("keydown", this.handleKey);
     const g = utils.getMatrix(rows, columns);
     utils.generateWalls(g);
     this.setState({ grid: g });
@@ -121,7 +125,7 @@ class Labyrinth extends React.Component {
     this.setState((prevState: State) => ({
       ...initialState,
       movesLeft: moves,
-      currentLevel: prevState.currentLevel+1,
+      currentLevel: prevState.currentLevel + 1,
     }));
     this.createLabyrinthGrid();
     // it positions the scroll at the initial player position.
@@ -131,8 +135,8 @@ class Labyrinth extends React.Component {
   };
 
   handleRestartGame = (): void => {
-    rows = BASE_ROWS;
-    columns = BASE_COLS;
+    rows = config.BASE_ROWS;
+    columns = config.BASE_COLS;
     this.setState(initialState);
     this.createLabyrinthGrid();
   };
@@ -164,14 +168,21 @@ class Labyrinth extends React.Component {
     );
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKey);
+  }
+
   render(): JSX.Element {
     return (
       <>
         <div className={styles.Level}>
-          {'Level: '} {this.state.currentLevel}
+          {"Level: "} {this.state.currentLevel}
         </div>
         <div className={styles.Container}>
-          <VisualLabyrinth matrix={this.state.grid} />
+          <VisualLabyrinth
+            data-testid="visual-labyrinth"
+            matrix={this.state.grid}
+          />
         </div>
         <div>
           <Marker
