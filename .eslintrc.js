@@ -33,6 +33,7 @@ module.exports = {
     "@typescript-eslint/no-unused-expressions": "off",
     "react/destructuring-assignment": "off",
     "react/prop-types": "off",
+    "react/sort-comp": "off",
     "no-return-assign": "off",
     "no-return-reassign": "off",
     "@typescript-eslint/camelcase": "off",

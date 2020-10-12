@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Created by Lucas Guardado
+ with [Create React App](https://github.com/facebook/create-react-app).
+
+## Live demo [Here](https://lguardado-labyrinth-game.web.app/)
+
 
 ## Available Scripts
 
