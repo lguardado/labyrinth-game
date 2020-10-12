@@ -178,13 +178,12 @@ class Labyrinth extends React.Component {
         <div className={styles.Level}>
           {"Level: "} {this.state.currentLevel}
         </div>
-        <div className={styles.Container}>
+        <div className={styles.Container} data-testid="visual-labyrinth">
           <VisualLabyrinth
-            data-testid="visual-labyrinth"
             matrix={this.state.grid}
           />
         </div>
-        <div>
+        <div data-testid="marker">
           <Marker
             movesLeft={this.state.movesLeft}
             success={this.state.reachedGoal}

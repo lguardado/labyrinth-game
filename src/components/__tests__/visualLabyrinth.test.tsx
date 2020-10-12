@@ -18,5 +18,5 @@ const mockMatrix = [
 
 test("It should render one block for each element in the matrix", () => {
   render(<VisualLabyrinth matrix={mockMatrix} />);
-  expect(screen.getAllByTestId(/block/i).length).toBe(6);
+  expect(screen.getAllByTestId("block").length).toBe(6);
 });

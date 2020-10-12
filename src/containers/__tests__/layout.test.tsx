@@ -5,5 +5,5 @@ import Layout from "../layout/layout";
 
 test("Renders layout and children correctly", () => {
   render(<Layout>Children</Layout>);
-  expect(screen.getByText(/Children/i)).toBeDefined();
+  expect(screen.getByText("Children")).toBeInTheDocument();
 });

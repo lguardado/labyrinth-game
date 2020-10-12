@@ -18,7 +18,7 @@ test("It should render a <GameControls /> with the text passed to it", () => {
       onRestartLevel={restartLevel}
     />
   );
-  const controls = screen.getByTestId(/game-controls/i);
+  const controls = screen.getByTestId("game-controls");
   expect(controls).toBeInTheDocument();
 });
 
