@@ -7,10 +7,10 @@ const rows = 5;
 let arr: Array<Array<Cell>> = [];
 
 beforeAll(() => {
-  arr = Utils.getMatrix(columns, rows);
+  arr = Utils.getBaseGrid(columns, rows);
 });
 
-test("Function getMatrix returns the correct data", () => {
+test("Function getBaseGrid returns the correct data", () => {
   expect(arr.length).toBe(columns);
   expect(arr[0].length).toBe(rows);
 });

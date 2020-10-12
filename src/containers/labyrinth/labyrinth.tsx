@@ -7,12 +7,13 @@ import Marker from "../../components/marker/marker";
 import VisualLabyrinth from "../../components/visualLabyrinth/visualLabyrinth";
 import GameControls from "../../components/gameControls/gameControls";
 import { Cell } from "../../shared/models/cell";
+import constants from '../../shared/constants';
 
 const config = {
   BASE_ROWS: 5,
   BASE_COLS: 5,
-  ADITIONAL_MOVEMENTS: 5
-}
+  ADITIONAL_MOVEMENTS: 5,
+};
 
 let rows = config.BASE_ROWS;
 let columns = config.BASE_COLS;
@@ -43,36 +44,46 @@ class Labyrinth extends React.Component {
   state: State = initialState;
 
   handleKey = (event: KeyboardEvent) => {
-      const { x, y } = this.state;
-      switch (event.code) {
-        case "ArrowUp":
-          if (this.canMove(x - 1, y)) {
-            this.move(-1, 0);
-          }
+    const { x, y } = this.state;
+    switch (event.code) {
+      case "ArrowUp":
+        if (this.canMove(x - 1, y)) {
+          this.move(-1, 0);
+        }
+        break;
+      case "ArrowDown":
+        if (this.canMove(x + 1, y)) {
+          this.move(1, 0);
+        }
+        break;
+      case "ArrowLeft":
+        if (this.canMove(x, y - 1)) {
+          this.move(0, -1);
+        }
+        break;
+      case "ArrowRight":
+        if (this.canMove(x, y + 1)) {
+          this.move(0, 1);
           break;
-        case "ArrowDown":
-          if (this.canMove(x + 1, y)) {
-            this.move(1, 0);
-          }
-          break;
-        case "ArrowLeft":
-          if (this.canMove(x, y - 1)) {
-            this.move(0, -1);
-          }
-          break;
-        case "ArrowRight":
-          if (this.canMove(x, y + 1)) {
-            this.move(0, 1);
-          }
-          break;
-        default:
-          break;
-      }
-  }
+        }
+      case "KeyR":
+        !this.state.isPlaying && this.handleRestartLevel();
+        break;
+      case "KeyN":
+        !this.state.isPlaying && this.handleNextLevel();
+        break;
+      case "KeyQ":
+        !this.state.isPlaying && this.handleRestartGame();
+        break;
+        break;
+      default:
+        break;
+    }
+  };
 
   componentDidMount(): void {
     document.addEventListener("keydown", this.handleKey);
-    const g = utils.getMatrix(rows, columns);
+    const g = utils.getBaseGrid(rows, columns);
     utils.generateWalls(g);
     this.setState({ grid: g });
   }
@@ -117,7 +128,7 @@ class Labyrinth extends React.Component {
   };
 
   // right now we're allowing the user to go to the next level
-  // even if he didn't win.
+  // even if he/she didn't win.
   handleNextLevel = (): void => {
     columns++;
     rows++;
@@ -141,6 +152,10 @@ class Labyrinth extends React.Component {
     this.createLabyrinthGrid();
   };
 
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKey);
+  }
+
   handleRestartLevel = (): void => {
     this.resetPlayerInGrid();
     this.setState((prevState: State) => ({
@@ -151,7 +166,7 @@ class Labyrinth extends React.Component {
   };
 
   createLabyrinthGrid(): void {
-    const g = utils.getMatrix(rows, columns);
+    const g = utils.getBaseGrid(rows, columns);
     utils.generateWalls(g);
     this.setState({ grid: g });
   }
@@ -168,20 +183,14 @@ class Labyrinth extends React.Component {
     );
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKey);
-  }
-
   render(): JSX.Element {
     return (
       <>
         <div className={styles.Level}>
-          {"Level: "} {this.state.currentLevel}
+          {constants.LEVEL} {this.state.currentLevel}
         </div>
         <div className={styles.Container} data-testid="visual-labyrinth">
-          <VisualLabyrinth
-            matrix={this.state.grid}
-          />
+          <VisualLabyrinth matrix={this.state.grid} />
         </div>
         <div data-testid="marker">
           <Marker

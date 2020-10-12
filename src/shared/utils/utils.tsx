@@ -1,6 +1,6 @@
 import { Cell } from "../models/cell";
 
-export const getMatrix = (
+export const getBaseGrid = (
   columns: number,
   rows: number
 ): Array<Array<Cell>> => {
@@ -21,9 +21,9 @@ export const getMatrix = (
   return array;
 };
 
-export const generateWalls = (arr: Array<Array<Cell>>): void => {
-  // todo: receive this coords as params to set the initial block for the game.
-  let current = arr[0][0];
+export const generateWalls = (arr: Array<Array<Cell>>, initialX=0, initialY=0): void => {
+  // We can receive x and y as params to customize the initial position.
+  let current = arr[initialX][initialY];
   current.isStart = true;
   current.isWall = false;
   current.isPlayerHere = true;
@@ -46,8 +46,7 @@ export const generateWalls = (arr: Array<Array<Cell>>): void => {
     return neighbour;
   }
 
-  function block(i: number, j: number): void {
-    // tslint:disable-line
+  function setCell(i: number, j: number): void {
     const next = getNeighbour(current);
     if (next) {
       next.isWall = false;
@@ -55,7 +54,7 @@ export const generateWalls = (arr: Array<Array<Cell>>): void => {
     } else {
       return;
     }
-    block(current.x, current.y);
+    setCell(current.x, current.y);
   }
-  block(0, 0);
+  setCell(0, 0);
 };

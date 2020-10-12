@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import React from "react";
 
+import constants from "../../shared/constants";
 import Button from "../button/button";
 import styles from "./gameControls.module.scss";
 
@@ -20,9 +21,9 @@ const GameControls: React.FC<Props> = ({
   <div data-testid="game-controls" className={styles.NewGameButtons}>
     {!isPlaying && (
       <>
-        <Button text="Next level" onClick={onNextLevel} />
-        <Button text="Restart this level" onClick={onRestartLevel} />
-        <Button text="Restart game" onClick={onRestartGame} />
+        <Button text={constants.NEXT_LEVEL} onClick={onNextLevel} />
+        <Button text={constants.RESTART_THIS_LEVEL} onClick={onRestartLevel} />
+        <Button text={constants.RESTART_GAME} onClick={onRestartGame} />
       </>
     )}
   </div>

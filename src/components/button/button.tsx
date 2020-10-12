@@ -9,7 +9,7 @@ interface Props {
   classes?: string[];
 }
 
-const Button: React.FC<Props> = ({ text, onClick, classes }): JSX.Element => {
+const Button: React.FC<Props> = ({ text, onClick, classes }) => {
   let baseClass = [styles.Button];
   if (classes?.length) {
     baseClass = [...baseClass, ...classes];

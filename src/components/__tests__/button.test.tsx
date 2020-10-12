@@ -39,5 +39,5 @@ test("It should have the base class when no classes are passed", () => {
   render(<Button text={mockText} />);
   const button = screen.getByRole("button");
   expect(button).toHaveClass("Button");
-  expect(button).not.toHaveClass("anotherMockClass");
+  expect(button).not.toHaveClass(anotherMockClass);
 });

@@ -8,7 +8,14 @@ function App() {
   return (
     <Layout>
       <Labyrinth />
-      <div style={{ position: "absolute", top: "0", right: "5px" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "0",
+          right: "5px",
+          color: "lightgrey",
+        }}
+      >
         created by Lucas Guardado
       </div>
     </Layout>
