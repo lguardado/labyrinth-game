@@ -17,8 +17,8 @@ const Marker: React.FC<Props> = ({ movesLeft, success, showResult }) => {
   const successMessage = success ? (
     <div className={styles.Success}>{constants.YOU_WIN}</div>
   ) : (
-      <div className={styles.Warning}>{constants.YOU_LOOSE}</div>
-    );
+    <div className={styles.Warning}>{constants.YOU_LOOSE}</div>
+  );
 
   return (
     <div
@@ -27,8 +27,8 @@ const Marker: React.FC<Props> = ({ movesLeft, success, showResult }) => {
         movesLeft < warningLimit && movesLeft > dangerLimit
           ? styles.Warning
           : movesLeft <= dangerLimit
-            ? styles.Danger
-            : "",
+          ? styles.Danger
+          : "",
       ].join(" ")}
     >
       {showResult && successMessage}

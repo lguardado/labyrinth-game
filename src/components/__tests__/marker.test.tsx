@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import Marker from "../marker/marker";
-import constants from '../../shared/constants';
+import constants from "../../shared/constants";
 
 test("It should render the loose message when player looses and show the moves received", () => {
   const movesLeft = 0;

@@ -21,7 +21,11 @@ export const getBaseGrid = (
   return array;
 };
 
-export const generateWalls = (arr: Array<Array<Cell>>, initialX=0, initialY=0): void => {
+export const generateWalls = (
+  arr: Array<Array<Cell>>,
+  initialX = 0,
+  initialY = 0
+): void => {
   // We can receive x and y as params to customize the initial position.
   let current = arr[initialX][initialY];
   current.isStart = true;

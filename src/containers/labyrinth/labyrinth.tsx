@@ -7,7 +7,7 @@ import Marker from "../../components/marker/marker";
 import VisualLabyrinth from "../../components/visualLabyrinth/visualLabyrinth";
 import GameControls from "../../components/gameControls/gameControls";
 import { Cell } from "../../shared/models/cell";
-import constants from '../../shared/constants';
+import constants from "../../shared/constants";
 
 const config = {
   BASE_ROWS: 5,
@@ -64,8 +64,8 @@ class Labyrinth extends React.Component {
       case "ArrowRight":
         if (this.canMove(x, y + 1)) {
           this.move(0, 1);
-          break;
         }
+        break;
       case "KeyR":
         !this.state.isPlaying && this.handleRestartLevel();
         break;
@@ -74,7 +74,6 @@ class Labyrinth extends React.Component {
         break;
       case "KeyQ":
         !this.state.isPlaying && this.handleRestartGame();
-        break;
         break;
       default:
         break;
