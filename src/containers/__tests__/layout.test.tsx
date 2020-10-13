@@ -5,5 +5,9 @@ import Layout from "../layout/layout";
 
 test("Renders layout and children correctly", () => {
   render(<Layout>Children</Layout>);
-  expect(screen.getByText("Children")).toBeInTheDocument();
+  expect(screen.getByText("Children")).toMatchInlineSnapshot(`
+    <div>
+      Children
+    </div>
+  `);
 });

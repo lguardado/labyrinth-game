@@ -12,7 +12,7 @@ beforeEach(() => {
 
 test("It should render a <Button /> with the text passed to it", () => {
   render(<Button text={mockText} />);
-  const button = screen.getByText(mockText);
+  const button = screen.getByRole("button");
   expect(button).toBeInTheDocument();
   expect(button.innerHTML).toContain(mockText);
 });
